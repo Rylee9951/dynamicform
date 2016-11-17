@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, hashHistory } from 'react-router';
 import {getForm} from 'api/apiform'
 import store from 'store'
+import 'font-awesome/css/font-awesome.css'
 
 const FormListContainer = React.createClass({
 	getInitialState: function(){
@@ -47,11 +48,11 @@ const FormList = React.createClass({
     				}else if(item.type === 'select'){
     					return <select id={item.id}>
  								<option value='choose'>{item.label}</option>
- 								<option value={item.value}>{item.label}</option>
- 								<option value={item.value}>{item.label}</option>
- 								<option value={item.value}>{item.label}</option>
- 								<option value={item.value}>{item.label}</option>
- 								<option value={item.value}>{item.label}</option>
+                                {item.options.map(label =>{
+                                    return(
+                                    <option value={label.value}>{label.label}</option>
+                                )
+                                })}
  							</select>
     				}else{return <textarea id={item.id} placeholder={item.label}></textarea>}
     				return (
